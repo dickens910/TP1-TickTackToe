@@ -21,7 +21,7 @@ public class UserDao extends Dao<User> {
     public boolean create(User x) {
         // TODO Auto-generated method stub
 
-        String req = "INSERT INTO user (`numId` , `mdp`) "
+        String req = "INSERT INTO users (`numId` , `mdp`) "
                 + "VALUES ('" + x.getUsername() + "','" + x.getPassword() + "')";
 
         //System.out.println("REQUETE "+req);
@@ -56,7 +56,7 @@ public class UserDao extends Dao<User> {
         Statement stm = null;
         try {
             stm = cnx.createStatement();
-            int n = stm.executeUpdate("DELETE FROM user WHERE numId='" + x.getUsername() + "'");
+            int n = stm.executeUpdate("DELETE FROM users WHERE numId='" + x.getUsername() + "'");
             if (n > 0) {
                 stm.close();
                 return true;
@@ -80,7 +80,7 @@ public class UserDao extends Dao<User> {
         // TODO Auto-generated method stub
         try {
             Statement stm = cnx.createStatement();
-            ResultSet r = stm.executeQuery("SELECT * FROM user WHERE numId = '" + id + "'");
+            ResultSet r = stm.executeQuery("SELECT * FROM users WHERE numId = '" + id + "'");
             if (r.next()) {
                 User c = new User(r.getString("numId"),r.getString("mdp"));
                 r.close();
@@ -97,7 +97,7 @@ public class UserDao extends Dao<User> {
         // TODO Auto-generated method stub
         Statement stm = null;
         try {
-            String req = "UPDATE user SET mdp = '" + x.getPassword() + "'"
+            String req = "UPDATE users SET mdp = '" + x.getPassword() + "'"
                     + " WHERE numId = '" + x.getUsername() + "'";
             //System.out.println("REQUETE "+req);
             stm = cnx.createStatement();
@@ -126,7 +126,7 @@ public class UserDao extends Dao<User> {
         List<User> liste = new LinkedList<User>();
         try {
             Statement stm = cnx.createStatement();
-            ResultSet r = stm.executeQuery("SELECT * FROM user");
+            ResultSet r = stm.executeQuery("SELECT * FROM users");
             while (r.next()) {
                 User c = new User(r.getString("numId"),
                         r.getString("mdp"));

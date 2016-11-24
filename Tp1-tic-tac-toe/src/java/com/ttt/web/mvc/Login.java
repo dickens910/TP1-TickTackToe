@@ -5,10 +5,11 @@
 package com.ttt.web.mvc;
 
 import com.ttt.entites.User;
+import com.ttt.jdbc.Connexion;
+import com.ttt.jdbc.dao.implementation.UserDao;
 import java.io.IOException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,14 +42,8 @@ public class Login extends HttpServlet {
             r.forward(request, response);
             return;
         }
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("mvc_exp1_nb70_avecDAOPU");
-        EntityManager em = emf.createEntityManager();
-        User user = em.find(User.class,u.trim());
-        em.close();
-        emf.close();
         
-        /*
+
         try {
             Class.forName(this.getServletContext().getInitParameter("piloteJdbc"));
         } catch (ClassNotFoundException ex) {
@@ -58,21 +53,21 @@ public class Login extends HttpServlet {
         Connexion.setUrl(this.getServletContext().getInitParameter("urlBd"));
         UserDao dao = new UserDao(Connexion.getInstance());
         User user = dao.read(u.trim());
-        */
+ 
         
         if (user==null)
         {
             //Utilisateur inexistant
             request.setAttribute("message", "Utilisateur "+u+" inexistant.");
             //response.sendRedirect("login.jsp");Ne fonctionne pas correctement (ie. perd le message d'erreur).
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
             r.forward(request, response);
         }
         else if (!user.getPassword().equals(p))
         {
             //Mot de passe incorrect
             request.setAttribute("message", "Mot de passe incorrect.");
-            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/login.jsp");
+            RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
             r.forward(request, response);
         }
         else

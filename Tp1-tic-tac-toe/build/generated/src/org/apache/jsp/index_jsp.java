@@ -30,7 +30,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html;charset=UTF-8");
+      response.setContentType("text/html;charset=ISO-8859-1");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -44,14 +44,40 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
+      out.write("        <title>Exemple de MVC</title>\n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"./style/style.css\">\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
+      out.write("    <body>       \n");
+        
+        if (session.getAttribute("connecte")!=null)
+        {
+            out.println("<p class=\"resultat\">"+session.getAttribute("connecte")+", vous êtes connectés. "+
+                        "<a href=\"logout.do?action=logout\">déconnexion</a></p>");
+
+        }
+        else 
+        {
+            out.println("<p> vous n'etes pas connecté et votre session est :"+application.getAttribute("nbConnectes")+"</p>" );
+        }
+
+      out.write("\n");
+      out.write("        <h1>MVC</h1>\n");
+      out.write("        <div id=\"container\">\n");
+      out.write("            <div> <p> X </p></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("            <div></div>\n");
+      out.write("        </div>    \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

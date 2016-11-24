@@ -1,0 +1,35 @@
+
+body{
+  background:ghostwhite; 
+}
+.errorMessage {
+    color : red;
+}
+ .resultat {
+     font-weight: bold;
+ }
+#container{
+  border-radius:4px;
+  background:#007fff;
+  width:500px;
+  height:500px;
+  padding-top:50px;
+  padding-bottom:0;
+  padding-left:50px;
+  margin-left:35%;
+  box-shadow: 0 5px 10px black;
+}
+#container>div{
+  background:white;
+  width:100px;
+  height:100px;
+  display:inline-block;
+  margin-bottom:4px;
+  text-align:center;
+  box-shadow: 0 2px 5px black;
+  border-radius:2px;
+  overflow:hidden;
+}
+.active{
+  
+}

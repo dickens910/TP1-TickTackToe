@@ -1,25 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ttt.entites;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 
 /**
  *
  * @author moumene
  */
-@Entity
+
 public class User {
-    @Id
-    @Column(name="numId",length=15)
-    private String username;
-    @Column(name="mdp",length=15)
-    private String password;
+    private String username,password;
 
     public User() {
         this.username = "";

@@ -31,6 +31,7 @@ public class Logout extends HttpServlet {
         //déconnexion
         HttpSession session = request.getSession(true);
         session.removeAttribute("connecte");
+        session.invalidate();
         RequestDispatcher r = this.getServletContext().getRequestDispatcher("/index.jsp");
         r.forward(request, response);
     }
