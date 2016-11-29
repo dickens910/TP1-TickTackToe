@@ -6,6 +6,7 @@
 
 package com.listeners;
 
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,6 +17,13 @@ import javax.servlet.ServletContextListener;
  */
 public class EcouteurApplication implements ServletContextListener {
 
+    private void initialiserAttributs(ServletContext sc) {
+        sc.setAttribute("listeJoueurs", new ArrayList());
+        sc.setAttribute("listeInvitations", new ArrayList());
+        sc.setAttribute("listeParties", new ArrayList());
+    }
+    
+    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Application demarree");

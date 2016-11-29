@@ -1,9 +1,9 @@
 package com.ttt.jdbc.dao.implementation;
 
-import com.ttt.entites.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class UserDao extends Dao<User> {
     public boolean create(User x) {
         // TODO Auto-generated method stub
 
-        String req = "INSERT INTO users (`numId` , `mdp`) "
+        String req = "INSERT INTO users (`user` , `password`) "
                 + "VALUES ('" + x.getUsername() + "','" + x.getPassword() + "')";
 
         //System.out.println("REQUETE "+req);
@@ -56,7 +56,7 @@ public class UserDao extends Dao<User> {
         Statement stm = null;
         try {
             stm = cnx.createStatement();
-            int n = stm.executeUpdate("DELETE FROM users WHERE numId='" + x.getUsername() + "'");
+            int n = stm.executeUpdate("DELETE FROM users WHERE user='" + x.getUsername() + "'");
             if (n > 0) {
                 stm.close();
                 return true;
@@ -80,9 +80,9 @@ public class UserDao extends Dao<User> {
         // TODO Auto-generated method stub
         try {
             Statement stm = cnx.createStatement();
-            ResultSet r = stm.executeQuery("SELECT * FROM users WHERE numId = '" + id + "'");
+            ResultSet r = stm.executeQuery("SELECT * FROM users WHERE user = '" + id + "'");
             if (r.next()) {
-                User c = new User(r.getString("numId"),r.getString("mdp"));
+                User c = new User(r.getString("user"),r.getString("password"));
                 r.close();
                 stm.close();
                 return c;
@@ -97,8 +97,8 @@ public class UserDao extends Dao<User> {
         // TODO Auto-generated method stub
         Statement stm = null;
         try {
-            String req = "UPDATE users SET mdp = '" + x.getPassword() + "'"
-                    + " WHERE numId = '" + x.getUsername() + "'";
+            String req = "UPDATE users SET password = '" + x.getPassword() + "'"
+                    + " WHERE user = '" + x.getUsername() + "'";
             //System.out.println("REQUETE "+req);
             stm = cnx.createStatement();
             int n = stm.executeUpdate(req);
@@ -128,8 +128,8 @@ public class UserDao extends Dao<User> {
             Statement stm = cnx.createStatement();
             ResultSet r = stm.executeQuery("SELECT * FROM users");
             while (r.next()) {
-                User c = new User(r.getString("numId"),
-                        r.getString("mdp"));
+                User c = new User(r.getString("user"),
+                        r.getString("password"));
                 liste.add(c);
             }
             r.close();
